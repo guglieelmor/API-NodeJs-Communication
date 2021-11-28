@@ -1,0 +1,26 @@
+{
+  "name": "communication",
+  "version": "1.0.0",
+  "description": "",
+  "main": "www/index.js",
+  "scripts": {
+    "dev": "nodemon www/index.js",
+    "start": "node www/database/scripts/createTables.js && node www/index.js",
+    "db": "node www/database/scripts/createTables.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gulliver",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "consign": "^0.1.6",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.3",
+    "path": "^0.12.7",
+    "sequelize": "^6.12.0-alpha.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

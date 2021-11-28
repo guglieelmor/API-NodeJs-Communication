@@ -1,0 +1,13 @@
+{
+    "api": {
+        "port": 3000
+    },
+    "database":{
+        "dialect": "mysql",
+        "name": "schedule", 
+        "user": "root", 
+        "port": 3306,
+        "password": "root", 
+        "host": "schedule_database"
+    }
+}
