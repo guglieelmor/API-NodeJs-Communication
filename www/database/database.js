@@ -1,9 +1,9 @@
-const Sequelize = require('sequelize')
-const path = require('path')
+const Sequelize = require('sequelize');
+const path = require('path');
 
 process.env["NODE_CONFIG_DIR"] = path.join(__dirname, '../../config');
 
-const config = require('config')
+const config = require('config');
 
 console.log('NODE_CONFIG_DIR: ' + config.util.getEnv('NODE_CONFIG_DIR'));
 
@@ -16,6 +16,6 @@ const seq = new Sequelize(
         dialect: config.get('database.dialect'),
         port: config.get('database.port')
     }
-)
+);
 
-module.exports = seq
+module.exports = seq;

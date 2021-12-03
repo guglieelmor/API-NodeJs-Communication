@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../database')
+const Sequelize = require('sequelize');
+const db = require('../database');
 
 const column = {
     recipient: {
@@ -22,12 +22,12 @@ const column = {
         type: Sequelize.STRING, 
         allowNull: false
     }
-}
+};
 
 const options = {
     freezeTableName: true,
     tableName: 'scheduling',
     timestamps: true
-}
+};
 
-module.exports = db.define('scheduling', column, options)
+module.exports = db.define('scheduling', column, options);

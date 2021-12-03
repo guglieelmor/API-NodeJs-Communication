@@ -77,7 +77,7 @@ Estrutura de pastas:
 
 ## Containers
 
-Estrutura de pastas:
+Estrutura dos arquivos:
 
 ```
 ├── api-nodejs-mysql-dockercompose
@@ -96,33 +96,83 @@ Estrutura de pastas:
 
 
 1. Agendamento de envio de comunicação.
-
+   ``` POST ```
     ```
-    POST http://localhost:3000/api/scheduling/create
+     http://localhost:3000/api/scheduling/create
     ```
    
-    a .Exemplo de POST aceito:
+    a .Exemplo de ``` POST ``` aceito ``` HTTP Status Code 201 ```:
 
     ```
     {
       "recipient": "guilherme@email.com.br", 
       "message": "Reunião sobre o DEV", 
-      "scheduling_date": "2021-11-10", 
+      "scheduling_date": "10/11/2023",
       "scheduling_hour": "10:00"
     }
     ```
-   
-2. Consulta do envio da comunicação.
-    ```
-    GET http://localhost:3000/api/scheduling/list/1
-    ``` 
-    a. Passando na URL o ID do agendamento que deseja visualizar
+   b. ```recipient:string``` E-mail de quem está agendando 
 
-3. Cancelamento do envio da comunicação.
+   c. ```message:string``` Um preve resumo do que se tratará nesse agendamento 
+
+   d. ```scheduling_date:string``` Data do evento
+
+   e. ```scheduling_hour:string``` Hora do evento
+
+
+3. Consulta do envio da comunicação. ``` GET ```
     ```
-    PUT http://localhost:3000/api/scheduling/update/1
+    http://localhost:3000/api/scheduling/list/1
+    ``` 
+   a .Exemplo de Callback ``` HTTP Status Code 200 ```:
+
     ```
-   a. Passando na URL o ID do agendamento que deseja cancelar
+      {
+        "status": 1,
+        "message": "Find aged!",
+        "aged": {
+        "id": 1,
+        "recipient": "guilherme@email.com.br",
+        "message": "Reunião sobre o DEV",
+        "status": 1,
+        "scheduling_date": "2021-11-10",
+        "scheduling_hour": "10:00",
+        "createdAt": "2021-11-28T00:38:48.000Z",
+        "updatedAt": "2021-12-03T01:36:19.000Z"
+        }
+      }
+    ```
+   
+    b. ``` Params ``` Passando na URL o ID do agendamento que deseja visualizar
+
+
+5. Cancelamento do envio da comunicação.  ``` PATCH ```
+    ```
+    http://localhost:3000/api/scheduling/cancel/1
+    ```
+   a .Exemplo de Callback ``` HTTP Status Code 200 ```:
+
+    ```
+   {
+     "status": 1,
+     "message": "Schedule 1 canceled successfully!"
+   }
+    ```
+
+   a. ``` Params ``` Passando na URL o ID do agendamento que deseja cancelar
+
+## Status Monitor Application
+
+1. Você também pode monitorar a aplicação acessando  ``` GET ```
+    ```
+     http://localhost:3000/status
+    ```
+
+   a . Você poderá visualizar: ``` CPU Usage ``` ``` Memory Usage ``` ``` Heap Usage ``` ``` One Minute Load Avg ``` ``` Spent in Event Loop ``` ``` Response Time ``` ``` Requests per Second ``` ``` Status Codes
+   2xx
+   3xx
+   4xx
+   5xx ```
 
 
 ## License

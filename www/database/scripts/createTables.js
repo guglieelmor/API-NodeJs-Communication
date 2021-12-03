@@ -1,49 +1,48 @@
-(async () => {
-    const scheduling = require('../models/scheduling')
-    const status = require('../models/status')
+const scheduling = require('../models/scheduling');
+const status = require('../models/status');
+const log = require('../../log/log')
+
+try {
+    status.sync()
+        .then(() => log.info('Status table created successfully!'))
+        .catch((error) => log.error(error))
 
     try {
-        status.sync()
-            .then(() => console.log('Status table created successfully!'))
-            .catch(console.log);
-
-        try {
-            status.findOrCreate({
+        status.findOrCreate({
+                where: {
+                    id: 1
+                },
+                defaults: {
+                    name: 'scheduled'
+                }
+            }).then(function(result) {
+                status.findOrCreate({
                     where: {
-                        id: 1
+                        id: 2
                     },
                     defaults: {
-                        name: 'scheduled'
+                        name: 'canceled'
                     }
                 }).then(function(result) {
                     status.findOrCreate({
                         where: {
-                            id: 2
+                            id: 3
                         },
                         defaults: {
-                            name: 'canceled'
+                            name: 'sent'
                         }
-                    }).then(function(result) {
-                        status.findOrCreate({
-                            where: {
-                                id: 3
-                            },
-                            defaults: {
-                                name: 'sent'
-                            }
-                        });
                     });
-            });
+                });
+        });
 
-        } catch(error){
-            console.log(error)
-        }
-
-        scheduling.sync()
-            .then(() => console.log('Scheduling table created successfully!'))
-            .catch(console.log);
-
-    } catch (error) {
-        console.log(error);
+    } catch(error){
+        log.error(error);
     }
-})();
+
+    scheduling.sync()
+        .then(() => log.info('Scheduling table created successfully!'))
+        .catch((error) => log.error(error));
+
+} catch (error) {
+    log.error(error);
+}
