@@ -16,7 +16,7 @@ Depois de clonar o repositório, para rodar localmente basta seguir os passos ab
 
 Certifique se você possui o [Docker](https://docs.docker.com/get-docker/) instalado na sua máquina.
 
-1. Instalar os módulos do node
+1. Instalar os módulos do Node
 
     ```
     npm i
@@ -50,8 +50,12 @@ Estrutura de pastas:
 │   │   │   │   └── createTables.js
 │   │   │   └── database.js
 │   │   └── index.js
+│   ├── log
+│   │   └── log.js
 │   ├── server
 │   │   └── server.js
+│   ├── test
+│   │   └── index.spec.js
 │   ├──.gitignore
 │   ├── docker-compose.yml
 │   ├── Dockerfile
@@ -72,6 +76,8 @@ Estrutura de pastas:
 6. ``` /www/database/scripts ``` Scripts que rodam automaticamente na criação das tabelas
 7. ``` /www/database/database.js ``` Seta/criação do objeto Sequelize e estabelece conexão
 8. ``` /www/server/server.js ``` Iniciando o servidor
+8. ``` /www/log/log.js ``` Configurando logs com pino
+8. ``` /www/test/index.spec.js.js ``` Teste automatizado nos endpoints usando Jest 
 9. ``` /docker-compose.yml && /Docker'file``` Configurações necessárias para a criações dos containers
 10. ```/init.sql``` Criando o banco de dados
 
